@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <style>
+      .row {
+        display: flex;
+      }
+      .square {
+        width: 20px;
+        height: 20px;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="grid"></div>
+    <div id="controls">
+      Width: <input type="number" id="width-input" value="10" />
+      <br />
+      Height: <input type="number" id="height-input" value="10" />
+      <br />
+      <button id="generate">Generate</button>
+    </div>
+
+    <script>
+      function generateGrid(height, width) {
+        var grid = document.getElementById("grid");
+        grid.innerHTML = "";
+
+        for (var i = 0; i < height; i++) {
+          var row = document.createElement("div");
+          row.classList.add("row");
+          grid.appendChild(row);
+
+          for (var j = 0; j < width; j++) {
+            var square = document.createElement("div");
+            square.classList.add("square");
+
+            // random fill square with black or white
+            if (Math.random() < 0.5) {
+              square.style.backgroundColor = "black";
+            } else {
+              square.style.backgroundColor = "white";
+            }
+
+            row.appendChild(square);
+          }
+        }
+      }
+
+      document
+        .getElementById("generate")
+        .addEventListener("click", function () {
+          var width = document.getElementById("width-input").value;
+          var height = document.getElementById("height-input").value;
+          generateGrid(height, width);
+        });
+    </script>
+  </body>
+</html>
